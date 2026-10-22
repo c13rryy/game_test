@@ -32,17 +32,14 @@ class Warrior:
 
 
 class Elf(Warrior):
-    action_counter = 0
-
     def __init__(self, health=45, attack=7, agility=3):
         super().__init__(health, attack)
         self.agility = agility
+        self.action_counter = 0
 
     def __str__(self):
         return super().__str__() + f" agility: {self.agility}"
 
-    def attacking(self, other):
-        other.defend(self.attack)
 
     def defend(self, value):
         self.action_counter += 1
@@ -51,11 +48,10 @@ class Elf(Warrior):
 
 
 class Orc(Warrior):
-    action_counter = 0
-
     def __init__(self, health=55, attack=6, fury=2):
         super().__init__(health, attack)
         self.fury = fury
+        self.action_counter = 0
 
     def __str__(self):
         return super().__str__() + f" fury: {self.fury}"
@@ -66,9 +62,6 @@ class Orc(Warrior):
             other.defend(self.attack + self.fury)
         else:
             other.defend(self.attack)
-
-    def defend(self, value):
-        self.health -= value
 
 
 def fight(warrior1, warrior2):
